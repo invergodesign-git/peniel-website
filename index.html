@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta name="description" content="Peniel International Ministries of Restoration — A bilingual church in Burlingame, CA dedicated to restoration, salvation, healing and hope."/>
+<meta property="og:title" content="Peniel International Ministries of Restoration"/>
+<meta property="og:description" content="Bilingual church in Burlingame, CA. Sunday Worship 10:00 AM. All are welcome."/>
+<title>Peniel International Ministries of Restoration | Restoration, Salvation, Healing &amp; Hope</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<style>
+  * { box-sizing: border-box; }
+  .material-symbols-outlined {
+    font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+    vertical-align: middle;
+  }
+  .hero-gradient {
+    background: linear-gradient(to right, rgba(255,248,245,0.97) 0%, rgba(255,248,245,0.80) 60%, rgba(255,248,245,0.55) 100%),
+      url('https://lh3.googleusercontent.com/aida-public/AB6AXuBHBCTJHMCUYX8aEKfvIINziKLr4kXXG2j-HVBctHEUohUVIeOselpgckwlYvXDdvKiMqE4cFkVBY8-AhVx71LXVN2Kt7euXYIB1CzDiBlramZCQmjuZqQKRScX8W3vLeqBzVh5oT8NNGcFM1HeqvG0AIK_vvTNrNarl33N-LGDORTQBEnKUAIU7sMuSWSeyK42L7UShbqPjsUjRLPGxXYY9N-EsYLMLk4NxYqExkmFEZxVYlPev9KckMSXhg5JOhiecj-LpHJQvqo') center/cover no-repeat;
+  }
+  @keyframes logo-glow {
+    0%,100% { filter: drop-shadow(0 0 2px rgba(115,92,0,0.2)); opacity:.9; }
+    50%      { filter: drop-shadow(0 0 12px rgba(115,92,0,0.5)); opacity:1; }
+  }
+  .logo-animate { animation: logo-glow 4s ease-in-out infinite; }
+
+  /* Mobile menu slide */
+  #mobile-menu { max-height: 0; overflow: hidden; transition: max-height 0.35s ease; }
+  #mobile-menu.open { max-height: 500px; }
+
+  /* Form inputs */
+  .form-input {
+    display: block; width: 100%; padding: .75rem 1rem;
+    border: 1.5px solid #d0c5af; border-radius: .5rem;
+    background: #fff; font-family: Inter, sans-serif; font-size: 15px;
+    outline: none; transition: border-color .2s, box-shadow .2s;
+  }
+  .form-input:focus { border-color: #735c00; box-shadow: 0 0 0 3px rgba(115,92,0,.12); }
+  .form-input.error { border-color: #ba1a1a; }
+  textarea.form-input { resize: vertical; min-height: 120px; }
+
+  /* Scroll-reveal */
+  .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .8s ease, transform .8s ease; }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* Toast */
+  #toast {
+    position: fixed; bottom: 2rem; left: 50%;
+    transform: translateX(-50%) translateY(120px);
+    background: #735c00; color: #fff;
+    padding: .85rem 1.75rem; border-radius: 9999px;
+    font-weight: 600; font-size: 14px; z-index: 9999;
+    transition: transform .4s cubic-bezier(.34,1.56,.64,1);
+    pointer-events: none; white-space: nowrap;
+  }
+  #toast.show { transform: translateX(-50%) translateY(0); }
+
+  /* Back-to-top */
+  #back-to-top {
+    transition: opacity .3s, transform .3s;
+    opacity: 0; pointer-events: none; transform: translateY(8px);
+  }
+  #back-to-top.visible { opacity: 1; pointer-events: auto; transform: translateY(0); }
+
+  /* Nav active link underline */
+  .nav-link.active { color: #735c00; border-bottom: 2px solid #735c00; padding-bottom: 2px; }
+
+  /* Spinning loader */
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spin { animation: spin .8s linear infinite; display: inline-block; }
+
+  /* Ministry card caption always visible on mobile */
+  @media (max-width: 768px) {
+    .card-caption { opacity: 1 !important; }
+  }
+</style>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          "outline-variant":"#d0c5af","on-surface":"#1d1b19",
+          "surface-container-low":"#f9f2ef","surface-container-high":"#ede7e4",
+          "primary-fixed":"#ffe088","on-primary-container":"#554300",
+          "on-background":"#1d1b19","surface":"#fff8f5",
+          "on-primary-fixed":"#241a00","on-tertiary":"#ffffff",
+          "outline":"#7f7663","on-secondary":"#ffffff",
+          "surface-variant":"#e8e1de","inverse-primary":"#e9c349",
+          "inverse-on-surface":"#f6efec","inverse-surface":"#33302e",
+          "error":"#ba1a1a","primary-container":"#d4af37","tertiary":"#5c614d",
+          "background":"#fff8f5","secondary":"#af2b3e","on-primary":"#ffffff",
+          "surface-container-highest":"#e8e1de","primary":"#735c00",
+          "surface-container":"#f3ede9","surface-dim":"#dfd9d6",
+          "secondary-container":"#fd6673","on-surface-variant":"#4d4635",
+          "surface-container-lowest":"#ffffff","on-secondary-container":"#680018",
+          "tertiary-container":"#b0b59e","on-error-container":"#93000a"
+        }
+      }
+    }
+  }
+</script>
+</head>
+
+<body class="bg-background text-on-surface font-sans antialiased">
+
+<!-- ═══════════════════════════════════════ TOAST ═══════════════════════════════════════ -->
+<div id="toast" role="alert" aria-live="polite"></div>
+
+<!-- ═══════════════════════════════════════ HEADER ══════════════════════════════════════ -->
+<header class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-md shadow-sm" id="site-header">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8 py-2 flex items-center justify-between gap-4">
+
+    <!-- Logo -->
+    <a href="#home" class="flex items-center gap-2 shrink-0" aria-label="Peniel International Ministries">
+      <img alt="MIR Peniel Logo" class="w-10 h-10 md:w-11 md:h-11 rounded-full logo-animate" loading="eager"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZcUQG7dFSBE_c46HZzeFps5y0pd6PxVd0ndMezCRtMPQ7zeTy5ynuruRuSMCUSzkAI2ly-nCzFFvprcXRj-HOpcKLoEfCe_fgznmJfp9z6ZM0dmhC-c-7jIrNCJB9ZEQZEg9Ta1CTFJSTayB5W0DnpVSgakkHF7A7Qcp2bHjxvLxhhQHvlHgIAbbQPAvY4iGz0gN9Wxx9G7egnzddiLbsa_QPdJjpiA7X1UMAt7AgklOihUnMVRenhwSJqdWzyLwtOEMzNHwPLAI"/>
+      <span class="font-bold text-primary tracking-tight text-sm md:text-base leading-tight hidden sm:block">
+        <span class="hidden lg:inline">Peniel International Ministries of Restoration</span>
+        <span class="lg:hidden">MIR Peniel</span>
+      </span>
+    </a>
+
+    <!-- Desktop Nav -->
+    <nav class="hidden md:flex items-center gap-6" aria-label="Main navigation">
+      <a class="nav-link text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#home" data-en="Home" data-es="Inicio">Home</a>
+      <a class="nav-link text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#about" data-en="About" data-es="Nosotros">About</a>
+      <a class="nav-link text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#ministries" data-en="Ministries" data-es="Ministerios">Ministries</a>
+      <a class="nav-link text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#pastors" data-en="Pastors" data-es="Pastores">Pastors</a>
+      <a class="nav-link text-on-surface-variant font-medium hover:text-primary transition-colors text-sm" href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
+    </nav>
+
+    <!-- Right Controls -->
+    <div class="flex items-center gap-2 shrink-0">
+      <a href="#prayer" class="hidden sm:inline-flex items-center gap-1 bg-primary-container text-on-primary-container px-3 py-1.5 rounded-full text-xs font-semibold hover:opacity-80 transition-all whitespace-nowrap" data-en="🙏 Send Prayer Request" data-es="🙏 Enviar Petición">
+        🙏 Send Prayer Request
+      </a>
+      <button id="lang-btn" onclick="toggleLang()" title="Switch language"
+        class="px-2 py-1 border border-outline-variant rounded-lg text-xs font-medium text-on-surface-variant hover:bg-surface-container-high transition-colors">
+        EN | ES
+      </button>
+      <button id="hamburger" onclick="toggleMenu()" aria-label="Open menu" aria-expanded="false"
+        class="md:hidden p-1.5 rounded-lg hover:bg-surface-container-high transition-colors">
+        <span class="material-symbols-outlined text-on-surface text-2xl" id="burger-icon">menu</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile Dropdown Menu -->
+  <div id="mobile-menu" class="md:hidden bg-white/95 backdrop-blur-md border-t border-outline-variant/20" role="navigation">
+    <div class="max-w-[1200px] mx-auto px-4 py-3 flex flex-col gap-1">
+      <a href="#home" onclick="closeMenu()" class="py-2.5 px-3 rounded-lg text-primary font-semibold hover:bg-surface-container-low transition-colors" data-en="🏠 Home" data-es="🏠 Inicio">🏠 Home</a>
+      <a href="#about" onclick="closeMenu()" class="py-2.5 px-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors" data-en="ℹ️ About Us" data-es="ℹ️ Nosotros">ℹ️ About Us</a>
+      <a href="#ministries" onclick="closeMenu()" class="py-2.5 px-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors" data-en="🤝 Ministries" data-es="🤝 Ministerios">🤝 Ministries</a>
+      <a href="#pastors" onclick="closeMenu()" class="py-2.5 px-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors" data-en="👥 Pastors" data-es="👥 Pastores">👥 Pastors</a>
+      <a href="#contact" onclick="closeMenu()" class="py-2.5 px-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-low hover:text-primary transition-colors" data-en="📍 Contact & Schedule" data-es="📍 Contacto y Horarios">📍 Contact &amp; Schedule</a>
+      <a href="#prayer" onclick="closeMenu()" class="mt-1 py-2.5 px-3 rounded-lg bg-primary-container text-on-primary-container font-semibold text-center hover:opacity-80 transition-all" data-en="🙏 Send Prayer Request" data-es="🙏 Enviar Petición de Oración">🙏 Send Prayer Request</a>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- ═══════════════════════════════════════ HERO ════════════════════════════════════════ -->
+<section id="home" class="relative min-h-screen flex items-center pt-16 hero-gradient fade-in">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8 w-full grid md:grid-cols-2 gap-10 items-center py-16 md:py-24">
+
+    <!-- Hero Text -->
+    <div class="space-y-6">
+      <div class="inline-flex items-center gap-1.5 bg-primary-fixed/40 px-3 py-1.5 rounded-full text-primary font-bold text-xs tracking-widest uppercase">
+        <span class="material-symbols-outlined text-base">church</span>
+        <span data-en="Welcome Home" data-es="Bienvenido a Casa">Welcome Home</span>
+      </div>
+
+      <h1 class="font-['Playfair_Display'] text-4xl sm:text-5xl md:text-[3.25rem] font-bold text-on-surface leading-[1.15]">
+        <span data-en="Restoration, Salvation," data-es="Restauración, Salvación,">Restoration, Salvation,</span><br/>
+        <span class="text-secondary" data-en="Healing &amp; Hope" data-es="Sanidad y Esperanza">Healing &amp; Hope</span>
+      </h1>
+
+      <p class="text-lg text-on-surface-variant max-w-lg" data-en="Peniel International Ministries of Restoration is a bilingual church with a community vision of salvation, compassion, and service." data-es="Peniel International Ministries of Restoration es una iglesia bilingüe con una visión comunitaria de salvación, compasión y servicio.">
+        Peniel International Ministries of Restoration is a bilingual church with a community vision of salvation, compassion, and service.
+      </p>
+
+      <div class="flex flex-col sm:flex-row flex-wrap gap-3">
+        <a href="#contact" class="inline-flex items-center justify-center gap-2 bg-primary-container text-on-primary-container px-6 py-3 rounded-xl font-bold text-base shadow-lg hover:scale-105 active:scale-95 transition-transform" data-en="Join Us This Sunday" data-es="Únase Este Domingo">
+          <span class="material-symbols-outlined text-lg">calendar_month</span> Join Us This Sunday
+        </a>
+        <a href="#prayer" class="inline-flex items-center justify-center gap-2 border-2 border-secondary text-secondary px-6 py-3 rounded-xl font-bold text-base hover:bg-secondary hover:text-white active:scale-95 transition-all" data-en="Send a Prayer Request" data-es="Enviar una Petición">
+          <span class="material-symbols-outlined text-lg">volunteer_activism</span> Send a Prayer Request
+        </a>
+        <a href="#contact" class="inline-flex items-center gap-1 text-primary font-bold hover:underline self-center text-sm" data-en="View Service Times →" data-es="Ver Horarios →">
+          View Service Times →
+        </a>
+      </div>
+
+      <!-- Quick Info Pills -->
+      <div class="flex flex-wrap gap-2 pt-2">
+        <a href="tel:6502388537" class="inline-flex items-center gap-1 bg-white/70 border border-outline-variant/40 px-3 py-1.5 rounded-full text-xs font-medium text-on-surface-variant hover:border-secondary hover:text-secondary transition-colors">
+          <span class="material-symbols-outlined text-sm">call</span> (650) 238-8537
+        </a>
+        <span class="inline-flex items-center gap-1 bg-white/70 border border-outline-variant/40 px-3 py-1.5 rounded-full text-xs font-medium text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm">location_on</span> Burlingame, CA
+        </span>
+        <span class="inline-flex items-center gap-1 bg-white/70 border border-outline-variant/40 px-3 py-1.5 rounded-full text-xs font-medium text-on-surface-variant">
+          <span class="material-symbols-outlined text-sm">translate</span> Bilingual EN/ES
+        </span>
+      </div>
+    </div>
+
+    <!-- Service Card -->
+    <div class="relative flex justify-center md:justify-end">
+      <div class="bg-white/90 backdrop-blur-md p-6 rounded-2xl shadow-2xl border border-primary-fixed/30 w-full max-w-sm">
+        <div class="flex items-center gap-2 mb-4">
+          <div class="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
+          <span class="text-xs font-bold text-green-700 uppercase tracking-wider" data-en="Live Services" data-es="Servicios en Vivo">Live Services</span>
+        </div>
+
+        <h3 class="font-['Playfair_Display'] text-xl font-semibold text-secondary mb-1" data-en="Next Service" data-es="Próximo Servicio">Next Service</h3>
+        <p class="font-bold text-on-surface text-lg" data-en="Sunday Worship — 10:00 AM" data-es="Culto Dominical — 10:00 AM">Sunday Worship — 10:00 AM</p>
+
+        <div class="h-px bg-outline-variant/30 my-3"></div>
+
+        <div class="space-y-2 text-sm">
+          <p class="text-on-surface-variant flex items-start gap-1.5">
+            <span class="material-symbols-outlined text-primary text-base mt-0.5">location_on</span>
+            851 Burlway Rd Suite 207,<br/>Burlingame, CA 94010
+          </p>
+          <p class="text-on-surface-variant flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-primary text-base">schedule</span>
+            <span data-en="Sundays at 10:00 AM | Fridays at 7:00 PM" data-es="Domingos 10:00 AM | Viernes 7:00 PM">Sundays 10 AM | Fridays 7 PM</span>
+          </p>
+        </div>
+
+        <div class="mt-4 flex flex-col gap-2">
+          <a href="https://maps.google.com/?q=851+Burlway+Rd+Suite+207,+Burlingame,+CA+94010" target="_blank" rel="noopener"
+            class="flex items-center justify-center gap-2 bg-primary text-white px-4 py-2.5 rounded-xl font-bold text-sm hover:bg-secondary transition-colors active:scale-95">
+            <span class="material-symbols-outlined text-lg">directions</span>
+            <span data-en="Get Directions" data-es="Cómo Llegar">Get Directions</span>
+          </a>
+          <a href="tel:6502388537"
+            class="flex items-center justify-center gap-2 border border-primary text-primary px-4 py-2.5 rounded-xl font-bold text-sm hover:bg-primary-fixed/20 transition-colors active:scale-95">
+            <span class="material-symbols-outlined text-lg">call</span>
+            <span data-en="Call Us" data-es="Llámanos">Call Us</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Decorative blur -->
+      <div class="absolute -top-16 -right-16 w-72 h-72 bg-primary-fixed/25 rounded-full blur-3xl -z-10 hidden md:block"></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ ABOUT ═══════════════════════════════════════ -->
+<section id="about" class="py-20 md:py-24 bg-white fade-in">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+    <div class="grid md:grid-cols-2 gap-12 items-center">
+
+      <!-- Image -->
+      <div class="order-2 md:order-1 relative">
+        <img alt="Pastors Ricardo and Ana Molina" loading="lazy"
+          class="rounded-2xl shadow-2xl object-cover w-full h-80 md:h-[560px]"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVhVFtY_HMDEep7HeCgf0Yxid9o9UbqZ157fW8ahOlZb1SahWatO6lusinlLfe2J2M9p6PXIv412yB6QLQak6piTTZCDSXwHQMVO4Tt0gt6bwZAYXc2RjzdbPVUMlv7qSDqPAjyn5lwrya07xx-e8wiLGRnXzwu2Vvwd00_3GKmH862xuoJjC3NGW7n7v0cTNuvVeTEuEM5pqyb-lj0gPOrCoWfSq4dSMubQg6z9UgLy0LwwLQrwJUfQsoJQK8oa6u3h9MK-MsuNM"/>
+        <div class="absolute -bottom-4 right-4 md:-bottom-6 md:-right-4 bg-white p-3 rounded-xl shadow-xl border-l-4 border-primary max-w-[220px]">
+          <p class="text-xs font-bold italic text-on-surface-variant">"Our heart is to serve the community"</p>
+        </div>
+      </div>
+
+      <!-- Text -->
+      <div class="order-1 md:order-2 space-y-6">
+        <div>
+          <p class="text-secondary font-bold text-sm uppercase tracking-widest mb-2" data-en="Our Story" data-es="Nuestra Historia">Our Story</p>
+          <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-semibold text-on-surface" data-en="Our Heart &amp; Mission" data-es="Nuestro Corazón y Misión">Our Heart &amp; Mission</h2>
+        </div>
+
+        <p class="text-base text-on-surface-variant leading-relaxed" data-en="Our ministry is built on the pillars of restoration, salvation, and healing. We believe in reaching the broken-hearted and providing a sanctuary for those seeking spiritual peace." data-es="Nuestro ministerio se basa en los pilares de la restauración, la salvación y la sanidad. Creemos en llegar a los quebrantados de corazón y brindar un santuario para quienes buscan paz espiritual.">
+          Our ministry is built on the pillars of restoration, salvation, and healing. We believe in reaching the broken-hearted and providing a sanctuary for those seeking spiritual peace.
+        </p>
+
+        <p class="text-base text-secondary font-medium leading-relaxed italic">
+          Nuestro ministerio se basa en los pilares de la restauración, la salvación y la sanidad. Creemos en llegar a los quebrantados de corazón.
+        </p>
+
+        <div class="p-5 bg-primary-fixed/15 border-l-4 border-primary-container rounded-r-2xl">
+          <p class="text-primary font-bold text-sm mb-1.5">Luke 4:18 | Lucas 4:18</p>
+          <p class="font-['Playfair_Display'] text-on-surface italic text-lg leading-snug">
+            "The Spirit of the Lord is on me, because he has anointed me to proclaim good news to the poor..."
+          </p>
+        </div>
+
+        <p class="text-base text-on-surface-variant" data-en="Serving the San Mateo community since our founding, we provide bilingual services that bridge cultures and generations through the love of Christ." data-es="Sirviendo a la comunidad de San Mateo desde nuestra fundación, ofrecemos servicios bilingües que unen culturas y generaciones a través del amor de Cristo.">
+          Serving the San Mateo community since our founding, we provide bilingual services that bridge cultures and generations through the love of Christ.
+        </p>
+
+        <div class="flex flex-wrap gap-3">
+          <a href="#ministries" class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-80 active:scale-95 transition-all" data-en="Our Ministries" data-es="Nuestros Ministerios">
+            <span class="material-symbols-outlined text-lg">favorite</span> Our Ministries
+          </a>
+          <a href="#prayer" class="inline-flex items-center gap-2 border border-secondary text-secondary px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-secondary hover:text-white active:scale-95 transition-all" data-en="Prayer Request" data-es="Petición de Oración">
+            <span class="material-symbols-outlined text-lg">volunteer_activism</span> Prayer Request
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ MINISTRIES ══════════════════════════════════ -->
+<section id="ministries" class="py-20 md:py-24 bg-surface-container-low fade-in">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <p class="text-secondary font-bold text-sm uppercase tracking-widest mb-2" data-en="What We Do" data-es="Lo Que Hacemos">What We Do</p>
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-semibold text-on-surface" data-en="Ministries &amp; Outreach" data-es="Ministerios y Alcance">Ministries &amp; Outreach</h2>
+      <p class="text-on-surface-variant mt-3 max-w-xl mx-auto" data-en="Dedicated to serving the homeless community and local shelters with food, prayer, and unconditional love." data-es="Dedicados a servir a la comunidad sin hogar y los refugios locales con alimentos, oración y amor incondicional.">
+        Dedicated to serving the homeless community and local shelters with food, prayer, and unconditional love.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-5">
+
+      <!-- Card 1 -->
+      <div class="group relative overflow-hidden rounded-2xl bg-white shadow hover:shadow-xl transition-all duration-300 h-80 md:h-[420px] cursor-default">
+        <img alt="Pizza Outreach at Safe Harbor Shelter" loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuDTokA4odCj3-lKEG15D3RaUobkrO4ux_oZ1UqrYvNE3jfH-bctJATjV5-_zlz0uQ3JdnLeA3NgelBbr6wZqC2eZ6TlkZBqIVtpHzm5bt1OWhuxHBrF9VgNYF5_Nwn4HOK_GQMyQ_y3cHu6VY4GS9XksMFe-G4RClj-SD0BA1mWYCOreIksqjNS1EE9_lPTx2_ZULI00NhfBpYElYMnUpDgMwxGZGIXV5g2nZ27Jq72j6GV6WuexEZ_eQ-VbvuhrjpBzU2qn-bkwmo"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-5 text-white">
+          <span class="text-primary-fixed font-bold text-xs uppercase tracking-wider mb-1" data-en="🏠 Shelter Outreach" data-es="🏠 Alcance en Refugios">🏠 Shelter Outreach</span>
+          <h3 class="font-['Playfair_Display'] text-xl font-semibold" data-en="Bringing pizza to Safe Harbor Shelter" data-es="Llevando pizza al Refugio Safe Harbor">Bringing pizza to Safe Harbor Shelter</h3>
+          <p class="card-caption text-xs mt-1.5 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-en="Sharing love, food and prayer at the Safe Harbor Shelter every week." data-es="Compartiendo amor, alimentos y oración en el refugio Safe Harbor cada semana.">Sharing love, food and prayer at Safe Harbor Shelter every week.</p>
+        </div>
+      </div>
+
+      <!-- Card 2 -->
+      <div class="group relative overflow-hidden rounded-2xl bg-white shadow hover:shadow-xl transition-all duration-300 h-80 md:h-[420px] cursor-default">
+        <img alt="Food and Prayer Outreach" loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuA-xDRjndxQZtiHtOxDw5j7iZ4gkMehc-N-uMbzQ5yIDevIvWjQ8BTps3cVrPH2TYXhaOA3zDBArnN-M_Dp7nzoEtlqIv_K1i1Ev6VdrX7Y7rnJI6buG4_7y4mVlo9bWBSuSvVTa5Ewq4CPP2UUw2vt1Qflr3QAO3Ovyq-Sol6sTdFMwK7x2KAtF2IXeJn8Q_uJkN_ZApm6oxXv_hoynauc_a29Io1Q3jhD_TBAgUg3rGSrGjqgF9SuBeUJOGtLuTQV4jGCMNgZgys"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-5 text-white">
+          <span class="text-primary-fixed font-bold text-xs uppercase tracking-wider mb-1" data-en="🙏 Prayer &amp; Provisions" data-es="🙏 Oración y Provisiones">🙏 Prayer &amp; Provisions</span>
+          <h3 class="font-['Playfair_Display'] text-xl font-semibold" data-en="Bringing food and praying for those in need" data-es="Llevando alimentos y orando por los necesitados">Bringing food and praying for those in need</h3>
+          <p class="card-caption text-xs mt-1.5 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-en="Physical and spiritual nourishment for our community." data-es="Alimento físico y espiritual para nuestra comunidad.">Physical and spiritual nourishment for our community.</p>
+        </div>
+      </div>
+
+      <!-- Card 3 -->
+      <div class="group relative overflow-hidden rounded-2xl bg-white shadow hover:shadow-xl transition-all duration-300 h-80 md:h-[420px] sm:col-span-2 md:col-span-1 cursor-default">
+        <img alt="Community Fellowship and Meals" loading="lazy"
+          class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPRIUP3v1fEvJXazhb1GjeTRwFbBd87gowOWN4DJBIjhNm08GOwAl0_C_anx_xcjjTslGBXcN8YTi_4lenKdZcR_suNbmNu8lo4zAUaEkxoQzpK7crMbqXPcCKMb3myMYl35nxQjzvTU5eN-uVadG2F7ZAEf0vbTg0uk3ZvSg6fIRyxkNt_ZFfHWXdd6JmCZm6vJeHKDKco1JIb7QMHPEAErkedELZ9i7HaDfQZ9REy-K2TGiw-Nss7ImKpWL0Ahms9j0aNcsHsWs"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent flex flex-col justify-end p-5 text-white">
+          <span class="text-primary-fixed font-bold text-xs uppercase tracking-wider mb-1" data-en="🤝 Fellowship" data-es="🤝 Comunión">🤝 Fellowship</span>
+          <h3 class="font-['Playfair_Display'] text-xl font-semibold" data-en="Community meals and fellowship" data-es="Comidas comunitarias y comunión">Community meals and fellowship</h3>
+          <p class="card-caption text-xs mt-1.5 text-white/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300" data-en="Gathering together in Christian love and fellowship." data-es="Reuniéndonos en amor y comunión cristiana.">Gathering together in Christian love and fellowship.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PASTORS ═════════════════════════════════════ -->
+<section id="pastors" class="py-20 md:py-24 bg-white fade-in">
+  <div class="max-w-[900px] mx-auto px-4 md:px-8">
+    <div class="text-center mb-10">
+      <p class="text-secondary font-bold text-sm uppercase tracking-widest mb-2" data-en="Leadership" data-es="Liderazgo">Leadership</p>
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-semibold" data-en="Meet Our Pastors" data-es="Conozca a Nuestros Pastores">Meet Our Pastors</h2>
+    </div>
+
+    <div class="bg-surface-container-high rounded-3xl p-8 md:p-12 flex flex-col md:flex-row gap-8 items-center shadow-sm">
+      <div class="shrink-0">
+        <div class="w-36 h-36 md:w-48 md:h-48 rounded-full overflow-hidden border-4 border-primary shadow-lg">
+          <img alt="Pastors Ricardo and Ana Molina" loading="lazy"
+            class="w-full h-full object-cover"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDVhVFtY_HMDEep7HeCgf0Yxid9o9UbqZ157fW8ahOlZb1SahWatO6lusinlLfe2J2M9p6PXIv412yB6QLQak6piTTZCDSXwHQMVO4Tt0gt6bwZAYXc2RjzdbPVUMlv7qSDqPAjyn5lwrya07xx-e8wiLGRnXzwu2Vvwd00_3GKmH862xuoJjC3NGW7n7v0cTNuvVeTEuEM5pqyb-lj0gPOrCoWfSq4dSMubQg6z9UgLy0LwwLQrwJUfQsoJQK8oa6u3h9MK-MsuNM"/>
+        </div>
+      </div>
+
+      <div class="text-center md:text-left space-y-4">
+        <div>
+          <h3 class="font-['Playfair_Display'] text-2xl md:text-3xl font-semibold text-on-surface" data-en="Pastors Ricardo &amp; Ana Molina" data-es="Pastores Ricardo y Ana Molina">Pastors Ricardo &amp; Ana Molina</h3>
+          <p class="text-primary font-bold mt-1" data-en="Lead Pastors &amp; Community Chaplains" data-es="Pastores Principales y Capellanes Comunitarios">Lead Pastors &amp; Community Chaplains</p>
+        </div>
+
+        <p class="text-on-surface-variant leading-relaxed" data-en="With a deep theological background and a heart for service, Pastors Ricardo and Ana lead Peniel International with a vision of restoration. Pastor Ricardo also serves as a chaplain at Stanford Hospital, bringing spiritual care to patients and families in their most critical moments." data-es="Con una profunda formación teológica y un corazón para el servicio, los Pastores Ricardo y Ana lideran Peniel International con una visión de restauración. El Pastor Ricardo también sirve como capellán en el Hospital de Stanford, brindando cuidado espiritual en los momentos más críticos.">
+          With a deep theological background and a heart for service, Pastors Ricardo and Ana lead Peniel International with a vision of restoration. Pastor Ricardo also serves as a chaplain at Stanford Hospital, bringing spiritual care to patients and families in their most critical moments.
+        </p>
+
+        <p class="text-secondary font-medium italic text-sm">
+          El Pastor Ricardo también sirve como capellán en el Hospital de Stanford, brindando cuidado espiritual a pacientes y familias.
+        </p>
+
+        <div class="flex flex-wrap justify-center md:justify-start gap-3">
+          <a href="tel:6502388537"
+            class="inline-flex items-center gap-2 bg-primary-container text-on-primary-container px-5 py-2.5 rounded-xl font-bold text-sm hover:opacity-80 active:scale-95 transition-all" data-en="📞 Call Prayer Line" data-es="📞 Línea de Oración">
+            📞 Call Prayer Line
+          </a>
+          <a href="#prayer"
+            class="inline-flex items-center gap-2 border border-secondary text-secondary px-5 py-2.5 rounded-xl font-bold text-sm hover:bg-secondary hover:text-white active:scale-95 transition-all" data-en="🙏 Send Prayer Request" data-es="🙏 Enviar Petición">
+            🙏 Send Prayer Request
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ BELIEFS ═════════════════════════════════════ -->
+<section class="py-20 md:py-24 bg-surface-container-low fade-in">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <p class="text-secondary font-bold text-sm uppercase tracking-widest mb-2" data-en="Our Foundation" data-es="Nuestra Fundación">Our Foundation</p>
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-semibold" data-en="What We Believe" data-es="Lo Que Creemos">What We Believe</h2>
+    </div>
+
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <div class="p-5 bg-white rounded-2xl border border-outline-variant/20 hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center">
+        <span class="material-symbols-outlined text-secondary text-4xl mb-3 block">church</span>
+        <h3 class="font-bold text-on-surface mb-2 text-sm md:text-base" data-en="The Trinity" data-es="La Trinidad">The Trinity</h3>
+        <p class="text-xs text-on-surface-variant leading-relaxed" data-en="We believe in one God, eternally existent in three persons: Father, Son, and Holy Spirit." data-es="Creemos en un solo Dios en tres personas: Padre, Hijo y Espíritu Santo.">We believe in one God, eternally existent in three persons: Father, Son, and Holy Spirit.</p>
+      </div>
+      <div class="p-5 bg-white rounded-2xl border border-outline-variant/20 hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center">
+        <span class="material-symbols-outlined text-secondary text-4xl mb-3 block">auto_awesome</span>
+        <h3 class="font-bold text-on-surface mb-2 text-sm md:text-base" data-en="Salvation" data-es="Salvación">Salvation</h3>
+        <p class="text-xs text-on-surface-variant leading-relaxed" data-en="Salvation is received through repentance toward God and faith in the Lord Jesus Christ." data-es="La salvación se recibe mediante el arrepentimiento y la fe en Jesucristo.">Salvation is received through repentance toward God and faith in the Lord Jesus Christ.</p>
+      </div>
+      <div class="p-5 bg-white rounded-2xl border border-outline-variant/20 hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center">
+        <span class="material-symbols-outlined text-secondary text-4xl mb-3 block">healing</span>
+        <h3 class="font-bold text-on-surface mb-2 text-sm md:text-base" data-en="Divine Healing" data-es="Sanidad Divina">Divine Healing</h3>
+        <p class="text-xs text-on-surface-variant leading-relaxed" data-en="Divine healing is provided for in the atonement and is the privilege of all believers." data-es="La sanidad divina está provista en la expiación para todos los creyentes.">Divine healing is provided for in the atonement and is the privilege of all believers.</p>
+      </div>
+      <div class="p-5 bg-white rounded-2xl border border-outline-variant/20 hover:shadow-md hover:-translate-y-1 transition-all duration-300 text-center">
+        <span class="material-symbols-outlined text-secondary text-4xl mb-3 block">menu_book</span>
+        <h3 class="font-bold text-on-surface mb-2 text-sm md:text-base" data-en="The Bible" data-es="La Biblia">The Bible</h3>
+        <p class="text-xs text-on-surface-variant leading-relaxed" data-en="The Scriptures are inspired by God and are the infallible rule of faith and conduct." data-es="Las Escrituras son inspiradas por Dios y son la regla infalible de fe y conducta.">The Scriptures are inspired by God and are the infallible rule of faith and conduct.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ SCHEDULE & CONTACT ══════════════════════════ -->
+<section id="contact" class="py-20 md:py-24 bg-white fade-in">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <p class="text-secondary font-bold text-sm uppercase tracking-widest mb-2" data-en="Come Visit Us" data-es="Visítenos">Come Visit Us</p>
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-semibold" data-en="Schedule &amp; Location" data-es="Horario y Ubicación">Schedule &amp; Location</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Schedule -->
+      <div>
+        <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-secondary mb-6" data-en="Weekly Schedule" data-es="Horario Semanal">Weekly Schedule</h3>
+
+        <div class="space-y-3" id="schedule">
+          <div class="flex items-center justify-between p-4 bg-primary-fixed/10 rounded-xl border-l-4 border-primary shadow-sm">
+            <div>
+              <p class="font-bold text-on-surface" data-en="Sunday Worship" data-es="Culto Dominical">Sunday Worship</p>
+              <p class="text-xs text-on-surface-variant mt-0.5" data-en="Main Bilingual Service / Servicio Principal" data-es="Servicio Principal Bilingüe / Main Service">Main Bilingual Service</p>
+            </div>
+            <div class="text-right">
+              <span class="text-primary font-bold text-lg">10:00 AM</span>
+              <p class="text-xs text-on-surface-variant" data-en="Every Sunday" data-es="Cada Domingo">Every Sunday</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-outline-variant/20 shadow-sm hover:border-primary/30 transition-colors">
+            <div>
+              <p class="font-bold text-on-surface" data-en="Friday Prayer Night" data-es="Noche de Oración del Viernes">Friday Prayer Night</p>
+              <p class="text-xs text-on-surface-variant mt-0.5" data-en="Spiritual Warfare &amp; Intercession" data-es="Guerra Espiritual e Intercesión">Spiritual Warfare &amp; Intercession</p>
+            </div>
+            <div class="text-right">
+              <span class="text-on-surface font-bold text-lg">7:00 PM</span>
+              <p class="text-xs text-on-surface-variant" data-en="Fridays" data-es="Viernes">Fridays</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-outline-variant/20 shadow-sm hover:border-primary/30 transition-colors">
+            <div>
+              <p class="font-bold text-on-surface" data-en="Community Evangelism" data-es="Evangelismo Comunitario">Community Evangelism</p>
+              <p class="text-xs text-on-surface-variant mt-0.5" data-en="Outreach &amp; Street Ministry" data-es="Alcance y Ministerio Callejero">Outreach &amp; Street Ministry</p>
+            </div>
+            <div class="text-right">
+              <span class="text-on-surface font-bold" data-en="Saturdays" data-es="Sábados">Saturdays</span>
+              <p class="text-xs text-on-surface-variant" data-en="Various times" data-es="Varios horarios">Various times</p>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-between p-4 bg-white rounded-xl border border-outline-variant/20 shadow-sm hover:border-primary/30 transition-colors">
+            <div>
+              <p class="font-bold text-on-surface" data-en="Men &amp; Women's Groups" data-es="Grupos de Damas y Caballeros">Men &amp; Women's Groups</p>
+              <p class="text-xs text-on-surface-variant mt-0.5" data-en="Sociedades de Damas y Caballeros" data-es="Men's &amp; Women's Societies">Sociedades de Damas y Caballeros</p>
+            </div>
+            <div class="text-right">
+              <span class="text-on-surface font-bold" data-en="Monthly" data-es="Mensual">Monthly</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Prayer Lines -->
+        <div class="mt-6 p-5 bg-surface-container-high rounded-2xl">
+          <h4 class="font-bold text-on-surface mb-3" data-en="📞 Prayer Line Phones" data-es="📞 Líneas de Oración">📞 Prayer Line Phones</h4>
+          <div class="space-y-2">
+            <a class="flex items-center gap-2 text-secondary hover:underline font-medium text-sm" href="tel:6502388537">
+              <span class="material-symbols-outlined text-base">call</span> (650) 238-8537
+            </a>
+            <a class="flex items-center gap-2 text-secondary hover:underline font-medium text-sm" href="tel:6509224495">
+              <span class="material-symbols-outlined text-base">call</span> (650) 922-4495
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map & Address -->
+      <div class="space-y-4">
+        <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-secondary" data-en="Find Us" data-es="Encuéntranos">Find Us</h3>
+
+        <!-- Google Maps Embed -->
+        <div class="rounded-2xl overflow-hidden h-56 shadow-lg border border-outline-variant/20">
+          <iframe
+            title="Peniel International Ministries Location"
+            src="https://maps.google.com/maps?q=851+Burlway+Rd+Suite+207,+Burlingame,+CA+94010&output=embed&z=15"
+            width="100%" height="100%" frameborder="0" style="border:0;"
+            allowfullscreen loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="p-5 bg-surface-container-low rounded-2xl border border-outline-variant/20">
+          <h4 class="font-bold text-on-surface mb-2" data-en="📍 Address" data-es="📍 Dirección">📍 Address</h4>
+          <p class="text-on-surface-variant text-sm leading-relaxed">
+            851 Burlway Rd Suite 207<br/>Burlingame, CA 94010
+          </p>
+          <a href="https://maps.google.com/?q=851+Burlway+Rd+Suite+207,+Burlingame,+CA+94010" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-1.5 mt-3 text-primary font-bold text-sm hover:underline">
+            <span class="material-symbols-outlined text-base">directions</span>
+            <span data-en="Open in Google Maps" data-es="Abrir en Google Maps">Open in Google Maps</span>
+          </a>
+        </div>
+
+        <div class="p-5 bg-surface-container-low rounded-2xl border border-outline-variant/20">
+          <h4 class="font-bold text-on-surface mb-2" data-en="✉️ Email Us" data-es="✉️ Escríbenos">✉️ Email Us</h4>
+          <a class="flex items-center gap-2 text-secondary hover:underline font-medium text-sm" href="mailto:penielministries@gmail.com">
+            <span class="material-symbols-outlined text-base">mail</span> penielministries@gmail.com
+          </a>
+        </div>
+
+        <!-- Quick CTA -->
+        <a href="#prayer" class="flex items-center justify-center gap-2 w-full bg-secondary text-white py-3 rounded-xl font-bold hover:opacity-90 active:scale-95 transition-all" data-en="🙏 Submit a Prayer Request" data-es="🙏 Enviar una Petición de Oración">
+          🙏 Submit a Prayer Request
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════ PRAYER & DONATE ═════════════════════════════ -->
+<section id="prayer" class="py-20 md:py-24 bg-surface-container-low fade-in">
+  <div class="max-w-[1200px] mx-auto px-4 md:px-8">
+    <div class="text-center mb-12">
+      <p class="text-secondary font-bold text-sm uppercase tracking-widest mb-2" data-en="We Care For You" data-es="Nos Importas">We Care For You</p>
+      <h2 class="font-['Playfair_Display'] text-3xl md:text-4xl font-semibold" data-en="Prayer &amp; Giving" data-es="Oración y Ofrendas">Prayer &amp; Giving</h2>
+    </div>
+
+    <div class="grid md:grid-cols-2 gap-10">
+
+      <!-- Prayer Form -->
+      <div class="bg-white p-8 md:p-10 rounded-3xl shadow-sm">
+        <h3 class="font-['Playfair_Display'] text-2xl font-semibold text-secondary mb-1" data-en="Prayer Request" data-es="Petición de Oración">Prayer Request</h3>
+        <p class="text-on-surface-variant text-sm mb-6" data-en="How can we pray for you? / ¿Cómo podemos orar por usted?" data-es="¿Cómo podemos orar por usted? / How can we pray for you?">How can we pray for you? / ¿Cómo podemos orar por usted?</p>
+
+        <form id="prayer-form" onsubmit="submitPrayer(event)" novalidate class="space-y-4">
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
+            <div>
+              <input id="f-first" class="form-input" type="text" placeholder="First Name / Nombre *" autocomplete="given-name"/>
+              <p class="text-error text-xs mt-1 hidden" id="err-first" data-en="Please enter your first name." data-es="Por favor ingrese su nombre.">Please enter your first name.</p>
+            </div>
+            <div>
+              <input id="f-last" class="form-input" type="text" placeholder="Last Name / Apellido *" autocomplete="family-name"/>
+              <p class="text-error text-xs mt-1 hidden" id="err-last" data-en="Please enter your last name." data-es="Por favor ingrese su apellido.">Please enter your last name.</p>
+            </div>
+          </div>
+
+          <div>
+            <input id="f-email" class="form-input" type="email" placeholder="Email / Correo Electrónico *" autocomplete="email"/>
+            <p class="text-error text-xs mt-1 hidden" id="err-email" data-en="Please enter a valid email address." data-es="Ingrese una dirección de correo válida.">Please enter a valid email address.</p>
+          </div>
+
+          <div>
+            <input id="f-phone" class="form-input" type="tel" placeholder="Phone / Teléfono (optional)" autocomplete="tel"/>
+          </div>
+
+          <div>
+            <textarea id="f-request" class="form-input" rows="5" placeholder="Your Prayer Request / Su Petición de Oración *"></textarea>
+            <p class="text-error text-xs mt-1 hidden" id="err-request" data-en="Please share your prayer request." data-es="Por favor comparta su petición de oración.">Please share your prayer request.</p>
+          </div>
+
+          <div class="flex items-start gap-2.5">
+            <input type="checkbox" id="f-private" class="mt-0.5 rounded border-outline-variant/50 accent-primary"/>
+            <label for="f-private" class="text-xs text-on-surface-variant cursor-pointer" data-en="Keep my request private — for pastors only" data-es="Mantener mi petición privada — solo para los pastores">Keep my request private — for pastors only</label>
+          </div>
+
+          <button type="submit" id="submit-btn"
+            class="w-full flex items-center justify-center gap-2 bg-secondary text-white py-3.5 rounded-xl font-bold hover:bg-on-secondary-container active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-lg">send</span>
+            <span id="submit-label" data-en="Submit Prayer Request" data-es="Enviar Petición de Oración">Submit Prayer Request</span>
+          </button>
+        </form>
+
+        <!-- Success Message -->
+        <div id="prayer-success" class="hidden text-center py-8">
+          <div class="w-16 h-16 bg-primary-fixed/30 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="material-symbols-outlined text-primary text-4xl">check_circle</span>
+          </div>
+          <h3 class="font-['Playfair_Display'] text-xl font-semibold text-on-surface mb-2" data-en="Prayer Request Sent! 🙏" data-es="¡Petición Enviada! 🙏">Prayer Request Sent! 🙏</h3>
+          <p class="text-on-surface-variant text-sm mb-4" data-en="Our pastors will be praying for you. God bless you!" data-es="Nuestros pastores orarán por usted. ¡Dios le bendiga!">Our pastors will be praying for you. God bless you!</p>
+          <button onclick="resetForm()" class="text-primary font-bold text-sm hover:underline" data-en="Submit another request" data-es="Enviar otra petición">Submit another request</button>
+        </div>
+      </div>
+
+      <!-- Support Ministry -->
+      <div class="flex flex-col justify-center space-y-6">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-primary-fixed rounded-full flex items-center justify-center mx-auto mb-4">
+            <span class="material-symbols-outlined text-primary text-4xl">volunteer_activism</span>
+          </div>
+          <h3 class="font-['Playfair_Display'] text-2xl font-semibold mb-2" data-en="Support the Ministry" data-es="Apoya el Ministerio">Support the Ministry</h3>
+          <p class="text-on-surface-variant text-sm max-w-sm mx-auto" data-en="Your generosity helps us continue our outreach programs for the homeless and maintain our bilingual services." data-es="Su generosidad nos ayuda a continuar nuestros programas de alcance para personas sin hogar y mantener nuestros servicios bilingües.">
+            Your generosity helps us continue our outreach programs for the homeless and maintain our bilingual services.
+          </p>
+        </div>
+
+        <!-- Donation Options -->
+        <div class="space-y-3">
+          <a href="https://www.paypal.com/donate/?hosted_button_id=PENIELMIN" target="_blank" rel="noopener"
+            onclick="showToast('Redirecting to PayPal...')"
+            class="flex items-center justify-center gap-3 w-full bg-[#0070ba] text-white py-3.5 rounded-xl font-bold text-base hover:bg-[#005ea6] active:scale-95 transition-all shadow-md">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="white"><path d="M7.076 21.337H2.47a.641.641 0 0 1-.633-.74L4.944.901C5.026.382 5.474 0 5.998 0h7.46c2.57 0 4.578.543 5.69 1.81 1.01 1.15 1.304 2.42 1.012 4.287-.023.143-.047.288-.077.437-.983 5.05-4.349 6.797-8.647 6.797h-2.19c-.524 0-.968.382-1.05.9l-1.12 7.106zm14.146-14.42a3.35 3.35 0 0 0-.607-.541c-.013.076-.026.175-.041.254-.59 3.025-2.566 6.082-8.558 6.082H9.825l-1.106 7.01h2.873l1.188-7.543h2.33c4.944 0 7.348-2.384 8.112-6.262z"/></svg>
+            <span data-en="Give Through PayPal" data-es="Dar a través de PayPal">Give Through PayPal</span>
+          </a>
+
+          <a href="https://cash.app/$PenielMinistries" target="_blank" rel="noopener"
+            onclick="showToast('Redirecting to Cash App...')"
+            class="flex items-center justify-center gap-3 w-full bg-[#00D632] text-white py-3.5 rounded-xl font-bold text-base hover:bg-[#00b82b] active:scale-95 transition-all shadow-md">
+            <span class="material-symbols-outlined text-xl">attach_money</span>
+            <span data-en="Give Through Cash App" data-es="Dar a través de Cash App">Give Through Cash App</span>
+          </a>
+
+          <button onclick="showCheckInfo()"
+            class="flex items-center justify-center gap-3 w-full border-2 border-primary text-primary py-3.5 rounded-xl font-bold text-base hover:bg-primary-fixed/20 active:scale-95 transition-all">
+            <span class="material-symbols-outlined text-xl">mail</span>
+            <span data-en="Give by Check / Mail" data-es="Dar por Cheque / Correo">Give by Check / Mail</span>
+          </button>
+
+          <!-- Check Info (hidden by default) -->
+          <div id="check-info" class="hidden p-4 bg-surface-container-high rounded-xl border border-outline-variant/20">
+            <p class="font-bold text-on-surface text-sm mb-1" data-en="Make check payable to:" data-es="Hacer el cheque a nombre de:">Make check payable to:</p>
+            <p class="text-on-surface-variant text-sm">Peniel International Ministries of Restoration</p>
+            <p class="font-bold text-on-surface text-sm mt-2 mb-1" data-en="Mail to:" data-es="Enviar a:">Mail to:</p>
+            <p class="text-on-surface-variant text-sm">851 Burlway Rd Suite 207<br/>Burlingame, CA 94010</p>
+          </div>
+        </div>
+
+        <p class="text-center text-xs text-on-surface-variant italic px-4">
+          "Every man according as he purposeth in his heart, so let him give; for God loveth a cheerful giver." — 2 Corinthians 9:7
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+</main>
+
+<!-- ═══════════════════════════════════════ FOOTER ══════════════════════════════════════ -->
+<footer class="bg-inverse-surface text-inverse-on-surface py-16 px-4 md:px-8">
+  <div class="max-w-[1200px] mx-auto">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+
+      <!-- Brand -->
+      <div class="col-span-2 md:col-span-1">
+        <div class="flex items-center gap-2 mb-4">
+          <img alt="Peniel Logo" loading="lazy"
+            class="w-10 h-10 rounded-full border-2 border-inverse-primary/40"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuBZcUQG7dFSBE_c46HZzeFps5y0pd6PxVd0ndMezCRtMPQ7zeTy5ynuruRuSMCUSzkAI2ly-nCzFFvprcXRj-HOpcKLoEfCe_fgznmJfp9z6ZM0dmhC-c-7jIrNCJB9ZEQZEg9Ta1CTFJSTayB5W0DnpVSgakkHF7A7Qcp2bHjxvLxhhQHvlHgIAbbQPAvY4iGz0gN9Wxx9G7egnzddiLbsa_QPdJjpiA7X1UMAt7AgklOihUnMVRenhwSJqdWzyLwtOEMzNHwPLAI"/>
+          <span class="font-['Playfair_Display'] text-xl font-semibold text-inverse-primary">Peniel</span>
+        </div>
+        <p class="text-sm text-inverse-on-surface/70 leading-relaxed" data-en="Bringing restoration and hope to San Mateo through faith and service." data-es="Llevando restauración y esperanza a San Mateo a través de la fe y el servicio.">
+          Bringing restoration and hope to San Mateo through faith and service.
+        </p>
+      </div>
+
+      <!-- Quick Links -->
+      <div>
+        <h4 class="font-bold text-inverse-on-surface mb-4 text-sm uppercase tracking-wide" data-en="Quick Links" data-es="Acceso Rápido">Quick Links</h4>
+        <nav class="flex flex-col gap-2">
+          <a href="#about" class="text-sm text-inverse-on-surface/70 hover:text-inverse-primary transition-colors" data-en="About Us" data-es="Nosotros">About Us</a>
+          <a href="#pastors" class="text-sm text-inverse-on-surface/70 hover:text-inverse-primary transition-colors" data-en="Pastors" data-es="Pastores">Pastors</a>
+          <a href="#ministries" class="text-sm text-inverse-on-surface/70 hover:text-inverse-primary transition-colors" data-en="Ministries" data-es="Ministerios">Ministries</a>
+          <a href="#contact" class="text-sm text-inverse-on-surface/70 hover:text-inverse-primary transition-colors" data-en="Schedule" data-es="Horarios">Schedule</a>
+          <a href="#prayer" class="text-sm text-inverse-on-surface/70 hover:text-inverse-primary transition-colors" data-en="Prayer Request" data-es="Petición de Oración">Prayer Request</a>
+          <a href="#prayer" class="text-sm text-inverse-on-surface/70 hover:text-inverse-primary transition-colors" data-en="Give Online" data-es="Dar en Línea">Give Online</a>
+        </nav>
+      </div>
+
+      <!-- Service Times -->
+      <div>
+        <h4 class="font-bold text-inverse-on-surface mb-4 text-sm uppercase tracking-wide" data-en="Services" data-es="Servicios">Services</h4>
+        <div class="space-y-2">
+          <p class="text-sm text-inverse-on-surface/70" data-en="Sunday: 10:00 AM" data-es="Domingo: 10:00 AM">Sunday: 10:00 AM</p>
+          <p class="text-sm text-inverse-on-surface/70" data-en="Friday: 7:00 PM" data-es="Viernes: 7:00 PM">Friday: 7:00 PM</p>
+          <p class="text-sm text-inverse-on-surface/70" data-en="Saturday: Outreach" data-es="Sábado: Evangelismo">Saturday: Outreach</p>
+        </div>
+        <div class="mt-4">
+          <a href="https://maps.google.com/?q=851+Burlway+Rd+Suite+207,+Burlingame,+CA+94010" target="_blank" rel="noopener"
+            class="text-sm text-inverse-primary hover:underline flex items-center gap-1">
+            <span class="material-symbols-outlined text-sm">location_on</span>
+            851 Burlway Rd, Burlingame
+          </a>
+        </div>
+      </div>
+
+      <!-- Connect -->
+      <div>
+        <h4 class="font-bold text-inverse-on-surface mb-4 text-sm uppercase tracking-wide" data-en="Connect" data-es="Conectar">Connect</h4>
+        <div class="flex gap-3 mb-4">
+          <!-- Facebook -->
+          <a href="https://www.facebook.com/ana.molina.353250" target="_blank" rel="noopener" aria-label="Facebook"
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-inverse-on-surface hover:bg-[#1877F2] transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
+          </a>
+          <!-- YouTube -->
+          <a href="https://www.youtube.com/@RestauracionPenielUSA-i9w" target="_blank" rel="noopener" aria-label="YouTube"
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-inverse-on-surface hover:bg-[#FF0000] transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          </a>
+          <!-- Instagram -->
+          <a href="https://www.instagram.com/restauracionpenielusa" target="_blank" rel="noopener" aria-label="Instagram"
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-inverse-on-surface hover:bg-[#E1306C] transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/></svg>
+          </a>
+          <!-- TikTok -->
+          <a href="https://www.tiktok.com/@liz046538" target="_blank" rel="noopener" aria-label="TikTok"
+            class="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center text-inverse-on-surface hover:bg-[#010101] transition-colors">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.77a8.18 8.18 0 0 0 4.78 1.52V6.83a4.85 4.85 0 0 1-1.01-.14z"/></svg>
+          </a>
+        </div>
+
+        <div class="space-y-1.5">
+          <a href="tel:6502388537" class="flex items-center gap-1.5 text-xs text-inverse-on-surface/70 hover:text-inverse-primary transition-colors">
+            <span class="material-symbols-outlined text-sm">call</span> (650) 238-8537
+          </a>
+          <a href="mailto:penielministries@gmail.com" class="flex items-center gap-1.5 text-xs text-inverse-on-surface/70 hover:text-inverse-primary transition-colors">
+            <span class="material-symbols-outlined text-sm">mail</span> penielministries@gmail.com
+          </a>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="border-t border-white/10 mt-10 pt-6 flex flex-col sm:flex-row items-center justify-between gap-3">
+      <p class="text-xs text-inverse-on-surface/50 text-center" data-en="© 2025 Peniel International Ministries of Restoration. All rights reserved." data-es="© 2025 Peniel International Ministries of Restoration. Todos los derechos reservados.">
+        © 2025 Peniel International Ministries of Restoration. All rights reserved.
+      </p>
+      <p class="text-xs text-inverse-on-surface/40">Burlingame, California</p>
+    </div>
+  </div>
+</footer>
+
+<!-- Back to Top Button -->
+<button id="back-to-top" onclick="window.scrollTo({top:0,behavior:'smooth'})"
+  aria-label="Back to top"
+  class="fixed bottom-6 right-6 z-40 w-12 h-12 bg-primary text-white rounded-full shadow-xl flex items-center justify-center hover:bg-secondary transition-all">
+  <span class="material-symbols-outlined">arrow_upward</span>
+</button>
+
+<!-- ═══════════════════════════════════════ SCRIPTS ══════════════════════════════════════ -->
+<script>
+// ──────────────────── HAMBURGER MENU ────────────────────
+function toggleMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const icon  = document.getElementById('burger-icon');
+  const btn   = document.getElementById('hamburger');
+  const open  = menu.classList.toggle('open');
+  icon.textContent = open ? 'close' : 'menu';
+  btn.setAttribute('aria-expanded', open);
+}
+function closeMenu() {
+  const menu = document.getElementById('mobile-menu');
+  const icon  = document.getElementById('burger-icon');
+  const btn   = document.getElementById('hamburger');
+  menu.classList.remove('open');
+  icon.textContent = 'menu';
+  btn.setAttribute('aria-expanded', 'false');
+}
+// Close menu when clicking outside
+document.addEventListener('click', e => {
+  const header = document.getElementById('site-header');
+  if (!header.contains(e.target)) closeMenu();
+});
+
+// ──────────────────── LANGUAGE TOGGLE ────────────────────
+let lang = 'en';
+function toggleLang() {
+  lang = lang === 'en' ? 'es' : 'en';
+  const btn = document.getElementById('lang-btn');
+  btn.textContent = lang === 'en' ? 'EN | ES' : 'ES | EN';
+  document.documentElement.lang = lang;
+  document.querySelectorAll('[data-en]').forEach(el => {
+    const txt = el.getAttribute('data-' + lang);
+    if (txt !== null) el.innerHTML = txt;
+  });
+}
+
+// ──────────────────── SMOOTH SCROLL ────────────────────
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const target = document.querySelector(id);
+    if (!target) return;
+    e.preventDefault();
+    const offset = document.getElementById('site-header').offsetHeight + 8;
+    window.scrollTo({ top: target.offsetTop - offset, behavior: 'smooth' });
+    closeMenu();
+  });
+});
+
+// ──────────────────── ACTIVE NAV HIGHLIGHT ────────────────────
+const allSections = document.querySelectorAll('section[id], main section[id]');
+const navLinks = document.querySelectorAll('header .nav-link');
+function updateNav() {
+  const scrollY = window.scrollY + 120;
+  let current = '';
+  allSections.forEach(s => { if (scrollY >= s.offsetTop) current = s.id; });
+  navLinks.forEach(l => {
+    l.classList.remove('active');
+    if (l.getAttribute('href') === '#' + current) l.classList.add('active');
+  });
+}
+window.addEventListener('scroll', updateNav, { passive: true });
+
+// ──────────────────── SCROLL REVEAL ────────────────────
+const revealObs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+}, { threshold: 0.08 });
+document.querySelectorAll('.fade-in').forEach(el => revealObs.observe(el));
+
+// ──────────────────── BACK TO TOP ────────────────────
+window.addEventListener('scroll', () => {
+  document.getElementById('back-to-top').classList.toggle('visible', window.scrollY > 500);
+}, { passive: true });
+
+// ──────────────────── TOAST ────────────────────
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3500);
+}
+
+// ──────────────────── PRAYER FORM ────────────────────
+function submitPrayer(e) {
+  e.preventDefault();
+  const first   = document.getElementById('f-first');
+  const last    = document.getElementById('f-last');
+  const email   = document.getElementById('f-email');
+  const request = document.getElementById('f-request');
+  let valid = true;
+
+  // Reset all errors
+  ['first','last','email','request'].forEach(k => {
+    document.getElementById('f-'+k).classList.remove('error');
+    document.getElementById('err-'+k).classList.add('hidden');
+  });
+
+  if (!first.value.trim())   { markErr('first'); valid = false; }
+  if (!last.value.trim())    { markErr('last');  valid = false; }
+  if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { markErr('email'); valid = false; }
+  if (!request.value.trim()) { markErr('request'); valid = false; }
+
+  if (!valid) return;
+
+  // Animate button
+  const btn   = document.getElementById('submit-btn');
+  const label = document.getElementById('submit-label');
+  btn.disabled = true;
+  label.textContent = '⏳ Sending...';
+
+  // Build mailto and show success after short delay
+  setTimeout(() => {
+    const sub  = encodeURIComponent('Prayer Request — ' + first.value + ' ' + last.value);
+    const body = encodeURIComponent(
+      'Name: ' + first.value + ' ' + last.value +
+      '\nEmail: ' + email.value +
+      '\nPhone: ' + (document.getElementById('f-phone').value || 'N/A') +
+      '\nPrivate: ' + (document.getElementById('f-private').checked ? 'Yes' : 'No') +
+      '\n\nRequest:\n' + request.value
+    );
+    window.location.href = 'mailto:penielministries@gmail.com?subject=' + sub + '&body=' + body;
+
+    document.getElementById('prayer-form').classList.add('hidden');
+    document.getElementById('prayer-success').classList.remove('hidden');
+    showToast('🙏 Prayer request sent! God bless you!');
+  }, 1000);
+}
+
+function markErr(field) {
+  document.getElementById('f-'+field).classList.add('error');
+  document.getElementById('err-'+field).classList.remove('hidden');
+}
+
+function resetForm() {
+  document.getElementById('prayer-form').reset();
+  document.getElementById('prayer-form').classList.remove('hidden');
+  document.getElementById('prayer-success').classList.add('hidden');
+  const btn = document.getElementById('submit-btn');
+  btn.disabled = false;
+  document.getElementById('submit-label').textContent = 'Submit Prayer Request';
+}
+
+// ──────────────────── CHECK INFO TOGGLE ────────────────────
+function showCheckInfo() {
+  const box = document.getElementById('check-info');
+  box.classList.toggle('hidden');
+}
+</script>
+
+</body>
+</html>
